@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Build Human — AI but for Humans</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --red: #D0021B;
+      --black: #111111;
+      --near-black: #1a1a1a;
+      --dark-gray: #333333;
+      --mid-gray: #666666;
+      --light-gray: #999999;
+      --rule: #DADADA;
+      --bg: #FAFAF8;
+      --white: #FFFFFF;
+      --cream: #F5F4F0;
+      --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--black);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ─── UTILITY ─── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+    }
+
+    .rule--thick {
+      border-top: 3px solid var(--black);
+    }
+
+    /* ─── TOP BAR ─── */
+    .topbar {
+      background: var(--black);
+      padding: 10px 0;
+    }
+
+    .topbar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .topbar__eyebrow {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--light-gray);
+    }
+
+    .topbar__eyebrow span {
+      color: var(--red);
+    }
+
+    .topbar__cta {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 5px 14px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .topbar__cta:hover {
+      border-color: var(--white);
+      color: var(--white);
+    }
+
+    /* ─── HEADER / NAV ─── */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .header__main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header__logo {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      text-decoration: none;
+      line-height: 1;
+    }
+
+    .header__logo span {
+      color: var(--red);
+    }
+
+    .header__nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .header__nav a {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dark-gray);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .header__nav a:hover {
+      color: var(--red);
+    }
+
+    .header__nav-cta {
+      background: var(--red);
+      color: var(--white) !important;
+      padding: 9px 20px;
+      letter-spacing: 0.08em !important;
+      transition: background 0.2s !important;
+    }
+
+    .header__nav-cta:hover {
+      background: #a80016;
+      color: var(--white) !important;
+    }
+
+    /* ─── SECTION LABEL ─── */
+    .section-label {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 0;
+      background: var(--white);
+      overflow: hidden;
+    }
+
+    .hero__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .hero__content {
+      padding: 100px 0 80px;
+    }
+
+    .hero__lower {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+      padding-top: 40px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .hero__kicker {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero__kicker::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--red);
+    }
+
+    .hero__headline {
+      font-family: var(--serif);
+      font-size: clamp(64px, 9vw, 120px);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--black);
+      margin-bottom: 40px;
+    }
+
+    .hero__headline em {
+      font-style: italic;
+      color: var(--red);
+    }
+
+    .hero__subtext {
+      font-family: var(--sans);
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--mid-gray);
+    }
+
+    .hero__actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 24px;
+    }
+
+    .btn {
+      display: inline-block;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 15px 32px;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn--primary {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .btn--primary:hover {
+      background: var(--red);
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--black);
+      border: 1px solid var(--rule);
+      padding: 14px 32px;
+    }
+
+    .btn--ghost:hover {
+      border-color: var(--black);
+    }
+
+    .hero__visual {
+      position: relative;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      padding: 72px 64px;
+      overflow: hidden;
+    }
+
+    .hero__visual-text {
+      position: relative;
+      z-index: 4;
+      width: 100%;
+    }
+
+    .hero__quote {
+      font-family: var(--serif);
+      font-size: clamp(22px, 2.2vw, 30px);
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1.3;
+      color: var(--black);
+      letter-spacing: -0.015em;
+      margin-bottom: 28px;
+      border: none;
+      padding: 0;
+    }
+
+    .hero__quote-detail {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--mid-gray);
+    }
+
+    .hero__visual-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #f0efe9 0%, #e8e6de 100%);
+    }
+
+    .hero__visual-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .hero__visual-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      z-index: 1;
+    }
+
+    .hero__visual-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(245,244,240,0.15) 0%, rgba(245,244,240,0.60) 100%);
+      z-index: 2;
+    }
+
+    .hero__visual-mark {
+      font-family: var(--serif);
+      font-size: 160px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--black);
+      opacity: 0.06;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      pointer-events: none;
+      letter-spacing: -0.04em;
+      z-index: 3;
+    }
+
+    .hero__stat-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .hero__stat {
+      text-align: left;
+      padding: 22px 28px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-left: 3px solid var(--red);
+    }
+
+    .hero__stat-num {
+      font-family: var(--serif);
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--black);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .hero__stat-label {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--mid-gray);
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── TICKER ─── */
+    .ticker {
+      background: var(--black);
+      padding: 14px 0;
+      overflow: hidden;
+    }
+
+    .ticker__track {
+      display: flex;
+      gap: 0;
+      animation: ticker-scroll 30s linear infinite;
+      white-space: nowrap;
+    }
+
+    .ticker__item {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      padding: 0 40px;
+      border-right: 1px solid rgba(255,255,255,0.15);
+      flex-shrink: 0;
+    }
+
+    .ticker__item span {
+      color: var(--red);
+    }
+
+    @keyframes ticker-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ─── MANIFESTO ─── */
+    .manifesto {
+      padding: 120px 0;
+      background: var(--white);
+    }
+
+    .manifesto__header {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start;
+      margin-bottom: 80px;
+    }
+
+    .manifesto__label-col {
+      padding-top: 6px;
+    }
+
+    .manifesto__title {
+      font-family: var(--serif);
+      font-size: 52px;
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      margin-bottom: 20px;
+    }
+
+    .manifesto__intro {
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--mid-gray);
+    }
+
+    .manifesto__list {
+      border-top: 3px solid var(--black);
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .manifesto__item {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 40px;
+      padding: 52px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: start;
+      transition: background 0.2s;
+    }
+
+    .manifesto__item:hover .manifesto__num {
+      color: var(--red);
+    }
+
+    .manifesto__num {
+      font-family: var(--serif);
+      font-size: 72px;
+      font-weight: 900;
+      line-height: 1;
+      color: var(--black);
+      letter-spacing: -0.04em;
+      transition: color 0.2s;
+      padding-top: 4px;
+    }
+
+    .manifesto__body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .manifesto__statement {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--black);
+      letter-spacing: -0.01em;
+    }
+
+    .manifesto__detail {
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--mid-gray);
+      padding-top: 4px;
+    }
+
+    /* ─── SHARKS VS SAGES ─── */
+    .fork {
+      background: var(--black);
+      padding: 120px 0;
+    }
+
+    .fork__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .fork__header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .fork__eyebrow {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .fork__title {
+      font-family: var(--serif);
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--white);
+    }
+
+    .fork__split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .fork__side {
+      padding: 52px 52px 60px;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .fork__side--sage {
+      background: var(--red);
+    }
+
+    .fork__side-label {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .fork__side--sage .fork__side-label {
+      color: rgba(255,255,255,0.65);
+    }
+
+    .fork__side-name {
+      font-family: var(--serif);
+      font-size: 44px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: rgba(255,255,255,0.78);
+      margin-bottom: 40px;
+    }
+
+    .fork__side--sage .fork__side-name {
+      color: rgba(255,255,255,0.78);
+    }
+
+    .fork__question {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.3;
+      color: rgba(255,255,255,0.78);
+      font-style: italic;
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .fork__side--sage .fork__question {
+      color: rgba(255,255,255,0.78);
+    }
+
+    .fork__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .fork__list li {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.5;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .fork__side--sage .fork__list li {
+      color: rgba(255,255,255,0.8);
+      border-bottom-color: rgba(255,255,255,0.15);
+    }
+
+    .fork__list li::before {
+      content: '—';
+      font-weight: 300;
+      color: rgba(255,255,255,0.4);
+      flex-shrink: 0;
+    }
+
+    .fork__side--sage .fork__list li::before {
+      content: '→';
+      color: rgba(255,255,255,0.5);
+    }
+
+    .fork__outcome {
+      margin-top: 40px;
+      padding: 24px;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .fork__side--sage .fork__outcome {
+      background: rgba(0,0,0,0.15);
+    }
+
+    .fork__outcome-label {
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .fork__outcome-text {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.3;
+    }
+
+    .fork__side--sage .fork__outcome-text {
+      color: var(--white);
+    }
+
+    @media (max-width: 900px) {
+      .fork__split {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ─── OFFERINGS ─── */
+    .offerings {
+      padding: 120px 0;
+      background: var(--cream);
+    }
+
+    .offerings__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .offerings__header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: end;
+      margin-bottom: 60px;
+      padding-bottom: 48px;
+      border-bottom: 3px solid var(--black);
+    }
+
+    .offerings__title {
+      font-family: var(--serif);
+      font-size: 52px;
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--black);
+    }
+
+    .offerings__subtitle {
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--mid-gray);
+    }
+
+    .offerings__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .offering-card {
+      background: var(--white);
+      padding: 52px 44px 52px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease;
+    }
+
+    .offering-card:hover {
+      transform: translateY(-4px);
+      z-index: 1;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.10);
+    }
+
+    .offering-card--featured {
+      background: var(--black);
+    }
+
+    .offering-card__accent {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--rule);
+    }
+
+    .offering-card--featured .offering-card__accent {
+      background: var(--red);
+    }
+
+    .offering-card__number {
+      font-family: var(--serif);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--light-gray);
+      margin-bottom: 40px;
+    }
+
+    .offering-card--featured .offering-card__number {
+      color: rgba(255,255,255,0.35);
+    }
+
+    .offering-card__icon {
+      width: 44px;
+      height: 44px;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .offering-card__icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .offering-card__label {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 14px;
+    }
+
+    .offering-card--featured .offering-card__label {
+      color: var(--red);
+    }
+
+    .offering-card__title {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      color: var(--black);
+      margin-bottom: 20px;
+    }
+
+    .offering-card--featured .offering-card__title {
+      color: var(--white);
+    }
+
+    .offering-card__desc {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--mid-gray);
+      margin-bottom: 40px;
+      flex-grow: 1;
+    }
+
+    .offering-card--featured .offering-card__desc {
+      color: rgba(255,255,255,0.55);
+    }
+
+    .offering-card__features {
+      list-style: none;
+      margin-bottom: 44px;
+    }
+
+    .offering-card__features li {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--dark-gray);
+      padding: 10px 0;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .offering-card--featured .offering-card__features li {
+      color: rgba(255,255,255,0.65);
+      border-top-color: rgba(255,255,255,0.12);
+    }
+
+    .offering-card__features li::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    .offering-card__cta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      transition: gap 0.2s;
+    }
+
+    .offering-card--featured .offering-card__cta {
+      color: var(--white);
+    }
+
+    .offering-card__cta:hover {
+      gap: 20px;
+    }
+
+    .offering-card__arrow {
+      width: 32px;
+      height: 1px;
+      background: currentColor;
+      position: relative;
+      transition: width 0.2s;
+    }
+
+    .offering-card__arrow::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: -3px;
+      width: 6px;
+      height: 6px;
+      border-right: 1px solid currentColor;
+      border-top: 1px solid currentColor;
+      transform: rotate(45deg);
+    }
+
+    .offering-card:hover .offering-card__arrow {
+      width: 44px;
+    }
+
+    /* ─── CLIENTS STRIP ─── */
+    .clients {
+      padding: 80px 0;
+      background: var(--white);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .clients__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .clients__label {
+      text-align: center;
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--light-gray);
+      margin-bottom: 48px;
+    }
+
+    .clients__logos {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .clients__logo {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--rule);
+      transition: color 0.2s;
+      cursor: default;
+    }
+
+    .clients__logo:hover {
+      color: var(--black);
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: var(--black);
+      padding: 80px 0 40px;
+    }
+
+    .footer__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .footer__top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      padding-bottom: 60px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 40px;
+    }
+
+    .footer__brand {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .footer__brand span {
+      color: var(--red);
+    }
+
+    .footer__tagline {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+
+    .footer__col-title {
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 20px;
+    }
+
+    .footer__col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer__col ul li a {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer__col ul li a:hover {
+      color: var(--white);
+    }
+
+    .footer__bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer__copy {
+      font-family: var(--sans);
+      font-size: 11px;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .footer__legal {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer__legal a {
+      font-family: var(--sans);
+      font-size: 11px;
+      color: rgba(255,255,255,0.25);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer__legal a:hover {
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ─── MODAL ─── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 1000;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--white);
+      max-width: 760px;
+      width: 100%;
+      position: relative;
+      transform: translateY(24px);
+      transition: transform 0.35s ease;
+    }
+
+    .modal-overlay.open .modal {
+      transform: translateY(0);
+    }
+
+    .modal__header {
+      padding: 48px 60px 36px;
+      border-bottom: 3px solid var(--black);
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      z-index: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .modal__title {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--black);
+    }
+
+    .modal__close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: var(--mid-gray);
+      flex-shrink: 0;
+      margin-top: 4px;
+      transition: color 0.15s;
+    }
+
+    .modal__close:hover { color: var(--black); }
+
+    .modal__close svg {
+      display: block;
+      width: 20px;
+      height: 20px;
+    }
+
+    .modal__body {
+      padding: 44px 60px 60px;
+    }
+
+    .modal__body p {
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--dark-gray);
+      margin-bottom: 20px;
+    }
+
+    .modal__body h2 {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--black);
+      margin: 40px 0 14px;
+      line-height: 1.2;
+    }
+
+    .modal__body h3 {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--black);
+      margin: 32px 0 10px;
+      line-height: 1.3;
+    }
+
+    .modal__body ul {
+      padding-left: 0;
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .modal__body ul li {
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--dark-gray);
+      padding: 4px 0 4px 20px;
+      position: relative;
+    }
+
+    .modal__body ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--red);
+    }
+
+    .modal__body .modal__pullquote {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1.4;
+      color: var(--black);
+      border-left: 3px solid var(--red);
+      padding: 12px 0 12px 24px;
+      margin: 32px 0;
+    }
+
+    .modal__body .modal__label {
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    /* Hide image elements with empty src (placeholders) */
+    img[src=""] { display: none; }
+
+    /* ─── EDITORIAL BREAK ─── */
+    .editorial-break {
+      position: relative;
+      height: 62vh;
+      min-height: 440px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #e4dece 0%, #ccc4a8 100%);
+    }
+
+    .editorial-break__img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      z-index: 1;
+    }
+
+    .editorial-break__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(17,17,17,0.65) 0%,
+        rgba(17,17,17,0.30) 50%,
+        rgba(17,17,17,0.10) 100%
+      );
+      z-index: 2;
+    }
+
+    .editorial-break__caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 0 32px 64px;
+      max-width: 1264px;
+      margin: 0 auto;
+      z-index: 3;
+    }
+
+    .editorial-break__rule {
+      width: 36px;
+      height: 2px;
+      background: var(--red);
+      margin-bottom: 22px;
+    }
+
+    .editorial-break__text {
+      font-family: var(--serif);
+      font-size: clamp(26px, 2.8vw, 44px);
+      font-weight: 700;
+      font-style: italic;
+      color: var(--white);
+      max-width: 560px;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    /* ─── SCROLL REVEAL ANIMATION ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .hero__content {
+        padding: 60px 0;
+      }
+      .hero__lower {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .hero__actions {
+        justify-content: flex-start;
+      }
+      .manifesto__header {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .manifesto__item {
+        grid-template-columns: 64px 1fr;
+        gap: 24px;
+      }
+      .manifesto__body {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .manifesto__num {
+        font-size: 48px;
+      }
+      .offerings__grid {
+        grid-template-columns: 1fr;
+      }
+      .offerings__header {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .footer__top {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+      }
+      .header__nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar__inner">
+      <p class="topbar__eyebrow">The fork in the road is here. <span>Which bet are you making?</span></p>
+      <a href="#offerings" class="topbar__cta">View Programs</a>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header__main">
+      <a href="#" class="header__logo">Build <span>Human</span></a>
+      <nav class="header__nav">
+        <a href="mailto:Humans@buildhuman.co" class="header__nav-cta btn">Get in Touch</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__inner">
+      <div class="hero__content">
+        <p class="hero__kicker">Build Human</p>
+        <h1 class="hero__headline">AI but for<br /><em>humans.</em></h1>
+        <div class="hero__lower">
+          <p class="hero__subtext">
+            The smartest organizations aren't replacing their people with AI.
+            They're rebuilding their people <em>around</em> it — and gaining an edge
+            that software alone can never replicate.
+          </p>
+          <div class="hero__actions">
+            <a href="#offerings" class="btn btn--primary">See Our Programs</a>
+            <button onclick="openManifesto()" class="btn btn--ghost">Read the Manifesto</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker__track">
+      <span class="ticker__item">Executive AI Training</span>
+      <span class="ticker__item">Role <span>Reinvention</span></span>
+      <span class="ticker__item">Human-AI Teaming</span>
+      <span class="ticker__item">Future of Work</span>
+      <span class="ticker__item">Leadership Development</span>
+      <span class="ticker__item">AI Literacy</span>
+      <span class="ticker__item">Executive AI Training</span>
+      <span class="ticker__item">Role <span>Reinvention</span></span>
+      <span class="ticker__item">Human-AI Teaming</span>
+      <span class="ticker__item">Future of Work</span>
+      <span class="ticker__item">Leadership Development</span>
+      <span class="ticker__item">AI Literacy</span>
+      <!-- duplicate for seamless loop -->
+      <span class="ticker__item">Executive AI Training</span>
+      <span class="ticker__item">Role <span>Reinvention</span></span>
+      <span class="ticker__item">Human-AI Teaming</span>
+      <span class="ticker__item">Future of Work</span>
+      <span class="ticker__item">Leadership Development</span>
+      <span class="ticker__item">AI Literacy</span>
+      <span class="ticker__item">Executive AI Training</span>
+      <span class="ticker__item">Role <span>Reinvention</span></span>
+      <span class="ticker__item">Human-AI Teaming</span>
+      <span class="ticker__item">Future of Work</span>
+      <span class="ticker__item">Leadership Development</span>
+      <span class="ticker__item">AI Literacy</span>
+    </div>
+  </div>
+
+  <!-- MANIFESTO -->
+  <section class="manifesto" id="manifesto">
+    <div class="manifesto__header">
+      <div class="manifesto__label-col">
+        <span class="section-label">Our Manifesto</span>
+        <h2 class="manifesto__title">What we believe.</h2>
+      </div>
+      <div>
+        <p class="manifesto__intro">
+          Five convictions that drive every program we build and every
+          executive we work with. Not platitudes — principles we'll
+          defend in the room.
+        </p>
+      </div>
+    </div>
+
+    <div class="manifesto__list">
+
+      <div class="manifesto__item reveal">
+        <span class="manifesto__num">01</span>
+        <div class="manifesto__body">
+          <h3 class="manifesto__statement">The model is the easy part. The human is the hard part.</h3>
+          <p class="manifesto__detail">
+            Every organization can access the same AI. The differentiator is
+            the person operating it — their judgment, their taste, their
+            accountability. We invest where the leverage actually lives.
+          </p>
+        </div>
+      </div>
+
+      <div class="manifesto__item reveal reveal-delay-1">
+        <span class="manifesto__num">02</span>
+        <div class="manifesto__body">
+          <h3 class="manifesto__statement">Augmentation beats automation every time it matters.</h3>
+          <p class="manifesto__detail">
+            The highest-value work requires human presence — trust, nuance,
+            creativity, ethics. AI should amplify that presence, not
+            eliminate it. We build people who know the difference.
+          </p>
+        </div>
+      </div>
+
+      <div class="manifesto__item reveal reveal-delay-2">
+        <span class="manifesto__num">03</span>
+        <div class="manifesto__body">
+          <h3 class="manifesto__statement">Roles don't disappear. They reinvent themselves or become irrelevant.</h3>
+          <p class="manifesto__detail">
+            Waiting to see what AI does to your job is a losing strategy.
+            The professionals who thrive are the ones actively rebuilding
+            their roles from the inside out — before someone does it for them.
+          </p>
+        </div>
+      </div>
+
+      <div class="manifesto__item reveal">
+        <span class="manifesto__num">04</span>
+        <div class="manifesto__body">
+          <h3 class="manifesto__statement">AI literacy is the new executive credential.</h3>
+          <p class="manifesto__detail">
+            You don't need to build models. You need to understand them
+            well enough to lead teams that use them — to ask the right
+            questions, spot the failures, and make confident calls.
+          </p>
+        </div>
+      </div>
+
+      <div class="manifesto__item reveal reveal-delay-1">
+        <span class="manifesto__num">05</span>
+        <div class="manifesto__body">
+          <h3 class="manifesto__statement">The future belongs to the people who stayed human on purpose.</h3>
+          <p class="manifesto__detail">
+            Empathy, leadership, creative direction, moral courage — these
+            compound in value as AI scales. We train the capabilities that
+            only become more rare, and more powerful, over time.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDITORIAL IMAGE BREAK -->
+  <!-- Editorial image: add your image path to src below -->
+  <div class="editorial-break">
+    <img class="editorial-break__img" src="" alt="">
+    <div class="editorial-break__overlay"></div>
+    <div class="editorial-break__caption">
+      <div class="editorial-break__rule"></div>
+      <p class="editorial-break__text">The human is the competitive advantage that compounds.</p>
+    </div>
+  </div>
+
+  <!-- SHARKS VS SAGES -->
+  <section class="fork">
+    <div class="fork__inner">
+      <div class="fork__header reveal">
+        <span class="fork__eyebrow">The Fork in the Road</span>
+        <h2 class="fork__title">Every company has a choice to make:<br /><em style="font-style:italic;">will you be a shark or a sage?</em></h2>
+      </div>
+      <div class="fork__split">
+
+        <div class="fork__side reveal">
+          <div class="fork__side-name">Sharks</div>
+          <p class="fork__question">"How many humans can we eliminate?"</p>
+          <ul class="fork__list">
+            <li>Deploy AI to replace human jobs</li>
+            <li>Margin expansion — real. Revenue growth — missing.</li>
+            <li>Defending old markets with shrinking teams</li>
+            <li>Executing with precision against a world that no longer exists</li>
+          </ul>
+          <div class="fork__outcome">
+            <span class="fork__outcome-label">By 2028</span>
+            <p class="fork__outcome-text">Executing with precision against a world that no longer existed.</p>
+          </div>
+        </div>
+
+        <div class="fork__side fork__side--sage reveal reveal-delay-1">
+          <div class="fork__side-name">Sages</div>
+          <p class="fork__question">"What can we do now that was previously impossible?"</p>
+          <ul class="fork__list">
+            <li>Deploy AI to make humans ten times more powerful</li>
+            <li>Redesign every role — don't reduce it</li>
+            <li>Invest in human judgment as an organizational capability</li>
+            <li>Revenue growing at rates competitors could only model</li>
+          </ul>
+          <div class="fork__outcome">
+            <span class="fork__outcome-label">By 2028</span>
+            <p class="fork__outcome-text">Revenue growing at rates competitors could only model.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFERINGS -->
+  <section class="offerings" id="offerings">
+    <div class="offerings__inner">
+      <div class="offerings__header">
+        <div>
+          <span class="section-label">Programs</span>
+          <h2 class="offerings__title">Three ways we work.</h2>
+        </div>
+        <p class="offerings__subtitle">
+          From a single intensive to ongoing transformation —
+          each program is built for leaders who are serious about what comes next.
+        </p>
+      </div>
+
+      <div class="offerings__grid">
+
+        <!-- Card 1 -->
+        <div class="offering-card reveal">
+          <div class="offering-card__accent"></div>
+          <span class="offering-card__number">01 / 03</span>
+
+          <div class="offering-card__icon">
+            <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="22" cy="22" r="21" stroke="#DADADA" stroke-width="1"/>
+              <path d="M14 22h16M14 16h10M14 28h8" stroke="#111111" stroke-width="1.5" stroke-linecap="square"/>
+            </svg>
+          </div>
+
+          <span class="offering-card__label">Intensive</span>
+          <h3 class="offering-card__title">Executive AI Training</h3>
+          <p class="offering-card__desc">
+            The judgment layer is an executive skill. We equip senior leaders
+            to own both ends of the human wrapper — setting the right mission
+            before the AI runs, and translating its output into decisions
+            that only a human can make. Built for the 2026 window.
+          </p>
+
+          <ul class="offering-card__features">
+            <li>2-day intensive, cohorts of 8–12</li>
+            <li>Live AI tool walkthroughs</li>
+            <li>30-day follow-up coaching</li>
+          </ul>
+        </div>
+
+        <!-- Card 2 — Featured -->
+        <div class="offering-card offering-card--featured reveal reveal-delay-1">
+          <div class="offering-card__accent"></div>
+          <span class="offering-card__number">02 / 03</span>
+
+          <div class="offering-card__icon">
+            <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="22" cy="22" r="21" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+              <path d="M22 14v16M14 22h16" stroke="white" stroke-width="1.5" stroke-linecap="square"/>
+              <path d="M17 17l10 10M27 17L17 27" stroke="rgba(255,255,255,0.35)" stroke-width="1" stroke-linecap="square"/>
+            </svg>
+          </div>
+
+          <span class="offering-card__label">Workshop</span>
+          <h3 class="offering-card__title">Role Reinvention Workshop</h3>
+          <p class="offering-card__desc">
+            Decades of execution produced a workforce that had rarely been
+            asked to actually think. We change that. A structured audit
+            of each role: what AI absorbs, what gets freed, and how to
+            point that freed capacity at previously impossible problems.
+          </p>
+
+          <ul class="offering-card__features">
+            <li>Half-day or full-day format</li>
+            <li>Role audit + reinvention roadmap</li>
+            <li>Peer cohort accountability</li>
+          </ul>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="offering-card reveal reveal-delay-2">
+          <div class="offering-card__accent"></div>
+          <span class="offering-card__number">03 / 03</span>
+
+          <div class="offering-card__icon">
+            <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="22" cy="22" r="21" stroke="#DADADA" stroke-width="1"/>
+              <path d="M22 14c-4.418 0-8 3.582-8 8s3.582 8 8 8 8-3.582 8-8" stroke="#111111" stroke-width="1.5" stroke-linecap="square"/>
+              <circle cx="22" cy="22" r="3" stroke="#111111" stroke-width="1.5"/>
+            </svg>
+          </div>
+
+          <span class="offering-card__label">Ongoing</span>
+          <h3 class="offering-card__title">Role Reinvention Retainer</h3>
+          <p class="offering-card__desc">
+            The Sage advantage doesn't happen once — it compounds. Ongoing
+            partnership to keep your people pointed at the right problems
+            as the landscape shifts. Built for organizations serious about
+            being the case study, not the cautionary tale.
+          </p>
+
+          <ul class="offering-card__features">
+            <li>Monthly 1:1 advisory sessions</li>
+            <li>Quarterly role audit check-ins</li>
+            <li>Priority workshop seats</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTS -->
+  <div class="clients">
+    <div class="clients__inner">
+      <p class="clients__label">Trusted by leaders at</p>
+      <div class="clients__logos">
+        <span class="clients__logo">Meridian</span>
+        <span class="clients__logo">Hartwell & Co</span>
+        <span class="clients__logo">NorthPoint</span>
+        <span class="clients__logo">Elara Group</span>
+        <span class="clients__logo">Cairn Capital</span>
+        <span class="clients__logo">Vantage</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__top" style="grid-template-columns:1fr;">
+        <div>
+          <div class="footer__brand">Build <span>Human</span></div>
+          <p class="footer__tagline">
+            AI but for humans. We help executives and organizations
+            develop the human capabilities that AI can't replicate —
+            and won't.
+          </p>
+          <a href="mailto:Humans@buildhuman.co" style="font-family:var(--sans);font-size:15px;font-weight:400;color:var(--white);text-decoration:none;display:inline-flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.2);padding-bottom:4px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(255,255,255,0.7)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)'">Humans@buildhuman.co</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2026 Build Human. All rights reserved.</p>
+        <div class="footer__legal">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MANIFESTO MODAL -->
+  <div class="modal-overlay" id="manifestoModal" onclick="handleOverlayClick(event)">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">The 2028 Human Intelligence Renaissance</h2>
+        <button class="modal__close" onclick="closeManifesto()" aria-label="Close">
+          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <p>Citrini Research recently published a striking scenario memo imagining the macroeconomic fallout of AI-driven labor displacement: 10.2% unemployment, an S&amp;P down 38%, and an economy that generated extraordinary output while hollowing out the consumer base that sustained it. Like that memo, what follows is a scenario, not a prediction. The sole intent is to model an alternate path — one in which the same technology lands in the same economy, but a critical mass of organizations make a different bet about what humans are for.</p>
+
+        <div class="modal__pullquote">The unemployment rate printed 4.9% this morning, a full point below consensus.</div>
+
+        <p>The S&amp;P added 1.4% on the number. Real GDP has run at 3.1% annualized through the 2026–2028 window, and the federal budget held within 3% of baseline.</p>
+
+        <p>We almost got this catastrophically wrong. The Citrini Research memo was right about the technology. They were right about the disruption. What they missed was that roughly a third of large employers would make a different organizational bet than the one their model assumed — and that bet turned out to be contagious, raising the competitive bar that the firms that hadn't made it were eventually forced to meet.</p>
+
+        <h2>The Fork in the Road: Shark or Sage?</h2>
+
+        <p>In early 2026, agentic coding tools took a step-function leap. AI could suddenly code and analyze — reliably. Organizations realized these were real teammates capable of doing work, not just advanced search engines.</p>
+
+        <p>What had been experiments became operating systems. Across the Fortune 500, after a year of organizational navigation and implementation, the first wave of responses was exactly what you would expect.</p>
+
+        <p>Large companies began layoffs. Boards demanded efficiency programs. The logic made sense at the individual firm level: cut headcount, redeploy savings into AI, maintain output at lower cost. By early 2027, roughly 60% of Fortune 500 companies were executing some version of this playbook.</p>
+
+        <p>But the other third made a different bet. A handful of executives noticed something the efficiency optimizers missed: the companies cutting hardest were not actually outperforming. The margin expansion was real. The revenue growth wasn't.</p>
+
+        <p>Without realizing it, a fork in the road had emerged. A competing worldview was born — one that became widely known as the Sharks versus the Sages.</p>
+
+        <h2>The Competing Worldview</h2>
+
+        <p>The Sharks, the 60%, took the obvious path: deploy AI to automate human jobs, replacing them and converting them into cost savings.</p>
+
+        <p>The Sages took a different path. They deployed AI to make humans smarter and more strategic, giving them superpowers to conquer new verticals, new markets, new client relationships, and previously unsolvable problems.</p>
+
+        <div class="modal__pullquote">Sharks asked: how many humans can we eliminate? Sages asked: what can we do now that was previously impossible?</div>
+
+        <p>Both groups started from the same premise. AI had made basic human knowledge a commodity. All the routine knowledge work that had defined the economy — creating reports, processing information, managing workflows — turned out to be far more executional than genuinely intellectual. Everyone realized, almost simultaneously, that this layer of work had always been closer to manufacturing than to thinking.</p>
+
+        <p>But the Sages saw something further. In taking over the executional layer, AI had done something no one quite anticipated: it allowed human brains to be brains again.</p>
+
+        <p>The value of humans became clear through what economists coined the <strong>judgment layer</strong> — the irreducible acts of turning AI analysis and effort into game-changing insight and direction.</p>
+
+        <p>They called it the <strong>'human wrapper'</strong>. For every executional task owned by AI, humans could apply judgment before and after.</p>
+
+        <ul>
+          <li><strong>Before:</strong> setting the goals, curating the context, sending the AI on the right mission.</li>
+          <li><strong>After:</strong> using the AI's work to chart the right path forward — with the texture and nuance that purely algorithmic reasoning flattens out — and translating insight into action given people's histories, preconceptions, and preferences.</li>
+        </ul>
+
+        <p>This understanding unlocked superpowers within humans. The companies that grasped it stopped asking how many people they could cut and started asking how to make each one ten times as powerful.</p>
+
+        <h2>What the Sages Did, Specifically</h2>
+
+        <p>This is not a story about altruism. The Sage firms were not idealists. They made this bet because it paid off.</p>
+
+        <h3>They redesigned work instead of reducing it.</h3>
+        <p>Rather than asking which tasks to eliminate, they reinvented every role. They decomposed each position into its constituent tasks, determined what the AI could handle, and used the freed human capacity to drive strategic value. A researcher who once spent 80% of their time on synthesis spent 80% of their time on sense-making. An analyst who once produced one competitive landscape per quarter produced twelve — and started telling clients things their own strategy teams hadn't seen.</p>
+
+        <h3>They invested in human judgment.</h3>
+        <p>Peer review. Domain apprenticeship. Institutional practices that turn a technically capable person into someone with genuinely good judgment. They realized that decades of pure knowledge execution had produced a workforce that had rarely been asked to actually think. The raw material was there. It simply hadn't been exercised.</p>
+
+        <h3>They built AI systems designed for collaboration, not substitution.</h3>
+        <p>The UX of their internal tools was built to surface human attention to the right decision at the right moment. They instrumented for where human judgment added the most value and concentrated human effort there. The AI did not replace the strategist. It made the strategist's attention worth more.</p>
+
+        <h2>How It Paid Off</h2>
+
+        <p>By 2028, the bifurcation was visible in the data. The companies that had chosen expansion over subtraction were growing revenue at rates their competitors could only model. Sage firms weren't honing what they already had; they were expanding what was addressable. New demand unlocked. New categories untapped. Old problems finally solved because someone finally had the human capacity to think about them properly.</p>
+
+        <p>The Sharks, meanwhile, were waiting for a storm to pass that was not going to pass. Defending old markets with shrinking teams. Running leaner on leaner. There is a quality of interaction — an aliveness, a responsiveness, a sense of genuine expertise — within a Sage company that customers could feel the absence of with Sharks. Shark's quality of output was declining right as the Sages' was exploding.</p>
+
+        <p>The standard had moved. Cutting further wasn't going to close that gap. Sharks faced a forced choice: reinvest in humans to compete, or keep losing the clients worth having.</p>
+
+        <h2>You Are Reading This in February 2026</h2>
+
+        <p>The S&amp;P is near all-time highs. The fork has not yet appeared clearly in the data. Most firms have not yet made their bet explicitly; they are still living in the comfortable ambiguity of the early adoption period, when efficiency gains and workforce investment are not yet in direct tension.</p>
+
+        <p>That tension is coming. The quarterly pressure, when it arrives, will make one answer feel obvious. The cuts will feel responsible. The efficiency program will have a name and a slide deck and a timeline. It will feel like strategy.</p>
+
+        <div class="modal__pullquote">The question every leadership team needs to answer before the quarterly pressure makes the answer feel inevitable: What does our business become if we assume humans are the appreciating asset, not the depreciating one?</div>
+
+        <p>And here is the part that most leadership teams haven't modeled: the firms that answer it correctly won't just outperform. They'll raise the bar for everyone else. The minority doesn't need to save the economy directly. They need to make the alternative expensive enough that the market does the rest.</p>
+
+        <p>The companies that answer that question correctly in 2026 will be the case studies of 2028.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openManifesto() {
+      document.getElementById('manifestoModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeManifesto() {
+      document.getElementById('manifestoModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function handleOverlayClick(e) {
+      if (e.target === document.getElementById('manifestoModal')) closeManifesto();
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeManifesto(); });
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // Header shadow on scroll
+    const header = document.querySelector('.header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 10) {
+        header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
+      } else {
+        header.style.boxShadow = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
