@@ -247,6 +247,7 @@
 
     .hero__headline em {
       font-style: italic;
+      font-weight: 400;
       color: var(--red);
     }
 
@@ -266,7 +267,10 @@
     }
 
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       font-family: var(--sans);
       font-size: 11px;
       font-weight: 600;
@@ -574,15 +578,16 @@
     }
 
     .fork__title {
-      font-family: var(--serif);
-      font-size: 48px;
-      font-weight: 900;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
+      font-family: var(--sans);
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
       color: var(--black);
     }
 
     .fork__title em {
+      font-style: italic;
       font-weight: 400;
     }
 
@@ -726,7 +731,7 @@
     .fork__side--sage .fork__side-label { color: rgba(15,34,24,0.55); }
     .fork__side--sage .fork__side-name { color: #0F2218; }
     .fork__side--sage .fork__question { color: rgba(15,34,24,0.75); border-bottom-color: rgba(15,34,24,0.12); }
-    .fork__side--sage .fork__list li { color: rgba(15,34,24,0.72); border-bottom-color: rgba(15,34,24,0.1); }
+    .fork__side--sage .fork__list li { color: #0F2218; border-bottom-color: rgba(15,34,24,0.1); }
     .fork__side--sage .fork__list li::before { color: rgba(15,34,24,0.4); }
     .fork__side--sage .fork__outcome { background: rgba(15,34,24,0.1); }
     .fork__side--sage .fork__outcome-label { color: rgba(15,34,24,0.4); }
@@ -1348,6 +1353,7 @@
     .offering-card:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
     .offering-card__number { color: #999999; }
     .offering-card__label { color: #6B7A28; }
+    .offering-card--featured .offering-card__label { color: #6B7A28; }
     .offering-card__title { color: #111111; }
     .offering-card__desc { color: #666666; }
     .offering-card__subhead { color: #999999; }
@@ -1356,20 +1362,46 @@
     .offering-card__deliverable-title { color: #6B7A28; }
     .offering-card__cta { color: #111111; }
     .offering-card__features li { color: #444444; border-top-color: #DADADA; }
-    .offering-card__accent { background: #DADADA; }
+    .offering-card__accent { display: none; }
+    .offering-card__number { display: none; }
+    .offering-card--featured .offering-card__title { color: #111111; }
+    .offering-card--featured .offering-card__desc { color: #666666; }
+    .offering-card--featured .offering-card__subhead { color: #999999; }
+    .offering-card--featured .offering-card__cta { color: #111111; }
+    .offering-card--featured .offering-card__features li { color: #444444; border-top-color: #DADADA; }
+    .offering-card--featured .offering-card__deliverables { background: #E8E6DE; border-left-color: #DADADA; }
+    .offering-card--featured .offering-card__deliverables p { color: #444444; }
+    .offering-card--featured .offering-card__deliverable-title { color: #6B7A28; }
 
     .manifesto {
       background: #FAFAF8;
+      padding-top: 72px;
+    }
+    .offerings {
+      padding-bottom: 72px;
     }
     .manifesto__title { color: #111111; }
     .manifesto__intro { color: #666666; }
     .manifesto__list { border-top-color: #111111; }
-    .manifesto__item { border-bottom-color: #DADADA; }
-    .manifesto__num { color: #111111; }
-    .manifesto__item:hover .manifesto__num { color: #6B7A28; }
-    .manifesto__statement { color: #111111; }
+    .manifesto__item { border-bottom-color: #DADADA; align-items: center; grid-template-columns: 1fr; }
+    .manifesto__num { display: none; }
+    .manifesto__body { gap: 80px; }
+    .manifesto__statement { color: #111111; font-family: var(--sans); font-size: 26px; font-weight: 400; letter-spacing: -0.015em; }
     .manifesto__detail { color: #666666; }
     .manifesto .section-label { color: #6B7A28; }
+
+    /* ─── OFFERING CARD SUBGRID ALIGNMENT ─── */
+    .offerings__grid { grid-template-rows: repeat(6, auto); }
+    .offering-card { display: grid; grid-row: 1 / span 6; grid-template-rows: subgrid; }
+
+    /* ─── HERO HEADLINE SIZE ─── */
+    .hero__headline { font-size: clamp(52px, 7.5vw, 100px); }
+
+    /* ─── FOOTER TEXT OVERRIDES ─── */
+    .footer__tagline { color: rgba(255,255,255,0.75); }
+    .footer__copy { color: rgba(255,255,255,0.6); }
+    .footer__legal a { color: rgba(255,255,255,0.6); }
+    .footer__legal a:hover { color: #ffffff; }
 
     /* ─── EDITORIAL BREAK ─── */
     .editorial-break {
@@ -1425,7 +1457,7 @@
       font-size: clamp(26px, 2.8vw, 44px);
       font-weight: 700;
       font-style: italic;
-      color: var(--white);
+      color: var(--black);
       max-width: 560px;
       line-height: 1.2;
       letter-spacing: -0.02em;
@@ -1476,7 +1508,14 @@
       }
       .offerings__grid {
         grid-template-columns: 1fr;
+        grid-template-rows: auto;
       }
+      .offering-card {
+        display: flex;
+        flex-direction: column;
+        grid-row: auto;
+      }
+      .manifesto__item { grid-template-columns: 1fr; }
       .offerings__header {
         grid-template-columns: 1fr;
         gap: 20px;
@@ -1601,7 +1640,7 @@
     <div class="offerings__inner">
       <div class="offerings__header">
         <div>
-          <span class="section-label">How We Work</span>
+          <span class="section-label">What We Do</span>
           <h2 class="offerings__title">We are an AI Reinvention Team.</h2>
         </div>
         <p class="offerings__subtitle">
@@ -1617,15 +1656,14 @@
         <div class="offering-card reveal">
           <div class="offering-card__accent"></div>
           <span class="offering-card__number">01 / 02</span>
-          <span class="offering-card__label">Strategy</span>
+          <span class="offering-card__label">Offering 1</span>
           <h3 class="offering-card__title">AI North Star</h3>
           <p class="offering-card__desc">
-            The biggest mistake companies are making right now is deploying AI without
-            knowing what they're actually trying to become. You have to answer a simple
-            question first: why are we doing this? Because everyone else is isn't a good
-            enough answer. Your people need to see how AI unlocks a previously impossible
-            future for the company — something worth building toward. Without that, they
-            won't trust your intentions, and they won't have the motivation to change.
+            The biggest mistake companies make is deploying AI without knowing what they're
+            trying to become. You have to answer one question first: why are we doing this?
+            'Because everyone else is' doesn't cut it. Your people need to see how AI unlocks
+            a future worth building toward — or they won't trust your intentions, and they
+            won't change.
           </p>
 
           <span class="offering-card__subhead">We work with you to...</span>
@@ -1646,15 +1684,14 @@
         <div class="offering-card offering-card--featured reveal reveal-delay-1">
           <div class="offering-card__accent"></div>
           <span class="offering-card__number">02 / 02</span>
-          <span class="offering-card__label">Ongoing</span>
+          <span class="offering-card__label">Offering 2</span>
           <h3 class="offering-card__title">Role Reinvention Retainer</h3>
           <p class="offering-card__desc">
-            Most companies offer a prompt engineering workshop and expect everything to
-            change. That's not how adoption works. We work hand in hand with your teams
-            to redesign their roles from the ground up — and we do the heavy lifting,
-            so they don't have to figure it out from the side of their desk. What makes
-            it stick is that we're there every day, winning hearts and minds through the
-            work itself, not a one-time training that doesn't change anything.
+            Most companies run a prompt engineering workshop and call it transformation.
+            That's not how adoption works. We redesign roles from the ground up — doing
+            the heavy lifting so your people don't have to figure it out on the side of
+            their desk. What makes it stick: we're there every day, winning hearts and
+            minds through the work itself.
           </p>
 
           <span class="offering-card__subhead">We work with you to...</span>
@@ -1665,7 +1702,7 @@
           </ul>
 
           <div class="offering-card__deliverables">
-            <span class="offering-card__deliverable-title">End deliverable</span>
+            <span class="offering-card__deliverable-title">Key deliverable</span>
             <p><strong>Reinvented roles</strong> — teams that don't just have AI tools, but know exactly how to use them to go after what was previously out of reach.</p>
           </div>
         </div>
@@ -1733,21 +1770,6 @@
     </div>
   </div>
 
-  <!-- CLIENTS -->
-  <div class="clients">
-    <div class="clients__inner">
-      <p class="clients__label">Trusted by leaders at</p>
-      <div class="clients__logos">
-        <span class="clients__logo">Meridian</span>
-        <span class="clients__logo">Hartwell & Co</span>
-        <span class="clients__logo">NorthPoint</span>
-        <span class="clients__logo">Elara Group</span>
-        <span class="clients__logo">Cairn Capital</span>
-        <span class="clients__logo">Vantage</span>
-      </div>
-    </div>
-  </div>
-
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer__inner">
@@ -1758,7 +1780,7 @@
             We help companies reinvent themselves from the ground up with AI —
             so they can unlock a future that was previously impossible.
           </p>
-          <a href="mailto:hello@sageai.co" style="font-family:var(--sans);font-size:15px;font-weight:400;color:var(--white);text-decoration:none;display:inline-flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.2);padding-bottom:4px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(255,255,255,0.7)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)'">hello@sageai.co</a>
+          <a href="mailto:hello@wearesage.co" style="font-family:var(--sans);font-size:15px;font-weight:400;color:#ffffff;text-decoration:none;display:inline-flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.2);padding-bottom:4px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(255,255,255,0.7)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)'">hello@wearesage.co</a>
         </div>
       </div>
       <div class="footer__bottom">
@@ -1783,8 +1805,8 @@
         </button>
       </div>
       <div class="modal__body">
-        <p style="color:var(--mid-gray); margin-bottom:32px;">We'd love to hear about what you're building. Drop us a line and we'll be in touch.</p>
-        <a href="mailto:hello@sageai.co" style="display:inline-flex;align-items:center;gap:14px;font-family:var(--serif);font-size:26px;font-weight:700;letter-spacing:-0.01em;color:var(--black);text-decoration:none;border-bottom:2px solid var(--red);padding-bottom:6px;transition:color 0.2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--black)'">hello@sageai.co</a>
+        <p style="color:var(--mid-gray); margin-bottom:32px;">We'd love to hear about your AI journey. Drop us a line and we'll be in touch.</p>
+        <a href="mailto:hello@wearesage.co" style="display:inline-flex;align-items:center;gap:14px;font-family:var(--serif);font-size:26px;font-weight:700;letter-spacing:-0.01em;color:var(--black);text-decoration:none;border-bottom:2px solid var(--red);padding-bottom:6px;transition:color 0.2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--black)'">hello@wearesage.co</a>
       </div>
     </div>
   </div>
