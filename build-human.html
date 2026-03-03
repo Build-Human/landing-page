@@ -1451,7 +1451,7 @@
     <div class="header__main">
       <a href="#" class="header__logo">Sage <span>AI</span></a>
       <nav class="header__nav">
-        <a href="mailto:Humans@buildhuman.co" class="header__nav-cta btn">Get in Touch</a>
+        <button onclick="openContact()" class="header__nav-cta btn">Get in Touch</button>
       </nav>
     </div>
   </header>
@@ -1716,6 +1716,24 @@
     </div>
   </footer>
 
+  <!-- CONTACT MODAL -->
+  <div class="modal-overlay" id="contactModal" onclick="handleContactOverlayClick(event)">
+    <div class="modal" style="max-width:520px;">
+      <div class="modal__header">
+        <h2 class="modal__title">Get in Touch</h2>
+        <button class="modal__close" onclick="closeContact()" aria-label="Close">
+          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <p style="color:var(--mid-gray); margin-bottom:32px;">We'd love to hear about what you're building. Drop us a line and we'll be in touch.</p>
+        <a href="mailto:hello@sageai.co" style="display:inline-flex;align-items:center;gap:14px;font-family:var(--serif);font-size:26px;font-weight:700;letter-spacing:-0.01em;color:var(--black);text-decoration:none;border-bottom:2px solid var(--red);padding-bottom:6px;transition:color 0.2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--black)'">hello@sageai.co</a>
+      </div>
+    </div>
+  </div>
+
   <!-- MANIFESTO MODAL -->
   <div class="modal-overlay" id="manifestoModal" onclick="handleOverlayClick(event)">
     <div class="modal">
@@ -1808,6 +1826,18 @@
   </div>
 
   <script>
+    function openContact() {
+      document.getElementById('contactModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeContact() {
+      document.getElementById('contactModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    function handleContactOverlayClick(e) {
+      if (e.target === document.getElementById('contactModal')) closeContact();
+    }
+
     function openManifesto() {
       document.getElementById('manifestoModal').classList.add('open');
       document.body.style.overflow = 'hidden';
@@ -1819,7 +1849,7 @@
     function handleOverlayClick(e) {
       if (e.target === document.getElementById('manifestoModal')) closeManifesto();
     }
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeManifesto(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeManifesto(); closeContact(); } });
 
     // Scroll reveal
     const revealEls = document.querySelectorAll('.reveal');
