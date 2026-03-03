@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Build Human — AI but for Humans</title>
+  <title>Sage AI — AI to Unlock the Previously Impossible</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
@@ -15,7 +15,7 @@
     }
 
     :root {
-      --red: #D0021B;
+      --red: #6B7A28;
       --black: #111111;
       --near-black: #1a1a1a;
       --dark-gray: #333333;
@@ -166,7 +166,7 @@
     }
 
     .header__nav-cta:hover {
-      background: #a80016;
+      background: #4E5B1E;
       color: var(--white) !important;
     }
 
@@ -753,8 +753,82 @@
 
     .offerings__grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 2px;
+    }
+
+    .offering-card__subhead {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--light-gray);
+      display: block;
+      margin: 32px 0 14px;
+    }
+
+    .offering-card--featured .offering-card__subhead {
+      color: rgba(255,255,255,0.4);
+    }
+
+    .offering-card__deliverables {
+      margin-top: 32px;
+      padding: 22px 24px;
+      background: var(--cream);
+      border-left: 2px solid var(--rule);
+    }
+
+    .offering-card--featured .offering-card__deliverables {
+      background: rgba(255,255,255,0.06);
+      border-left-color: rgba(255,255,255,0.2);
+    }
+
+    .offering-card__deliverable-title {
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--red);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .offering-card__deliverables p {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--dark-gray);
+      margin-bottom: 10px;
+    }
+
+    .offering-card__deliverables p:last-child { margin-bottom: 0; }
+
+    .offering-card--featured .offering-card__deliverables p {
+      color: rgba(255,255,255,0.6);
+    }
+
+    .editorial-break__kicker {
+      font-family: var(--sans);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .editorial-break__subtext {
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      max-width: 500px;
+      line-height: 1.65;
+      margin-top: 24px;
     }
 
     .offering-card {
@@ -1375,7 +1449,7 @@
   <!-- HEADER -->
   <header class="header">
     <div class="header__main">
-      <a href="#" class="header__logo">Build <span>Human</span></a>
+      <a href="#" class="header__logo">Sage <span>AI</span></a>
       <nav class="header__nav">
         <a href="mailto:Humans@buildhuman.co" class="header__nav-cta btn">Get in Touch</a>
       </nav>
@@ -1386,13 +1460,13 @@
   <section class="hero">
     <div class="hero__inner">
       <div class="hero__content">
-        <p class="hero__kicker">Build Human</p>
-        <h1 class="hero__headline">AI but for<br /><em>humans.</em></h1>
+        <p class="hero__kicker">Sage AI</p>
+        <h1 class="hero__headline">AI to unlock<br /><em>the previously impossible.</em></h1>
         <div class="hero__lower">
           <p class="hero__subtext">
             The smartest organizations aren't replacing their people with AI.
-            They're rebuilding their people <em>around</em> it — and gaining an edge
-            that software alone can never replicate.
+            They're making their people 10x more powerful — so they can unlock
+            new customers, markets, and growth.
           </p>
           <div class="hero__actions">
             <a href="#offerings" class="btn btn--primary">See Our Programs</a>
@@ -1434,20 +1508,122 @@
     </div>
   </div>
 
-  <!-- MANIFESTO -->
-  <section class="manifesto" id="manifesto">
-    <div class="manifesto__header">
-      <div class="manifesto__label-col">
-        <span class="section-label">Our Manifesto</span>
-        <h2 class="manifesto__title">What we believe.</h2>
+  <!-- SHARKS VS SAGES -->
+  <section class="fork">
+    <div class="fork__inner">
+      <div class="fork__header reveal">
+        <span class="fork__eyebrow">The AI Fork in the Road</span>
+        <h2 class="fork__title">Every company has a choice to make:<br /><em style="font-style:italic;">will you be a Shark or a Sage?</em></h2>
       </div>
-      <div>
-        <p class="manifesto__intro">
-          Five convictions that drive every program we build and every
-          executive we work with. Not platitudes — principles we'll
-          defend in the room.
+      <div class="fork__split">
+
+        <div class="fork__side reveal">
+          <div class="fork__side-name">Sharks</div>
+          <p class="fork__question">"How many humans can we eliminate with AI?"</p>
+          <ul class="fork__list">
+            <li>Defend old markets with shrinking teams</li>
+            <li>Win a one-time efficiency gain, then watch revenue slowly erode</li>
+            <li>Customers sense the hollowness — and start looking for someone better</li>
+          </ul>
+        </div>
+
+        <div class="fork__side fork__side--sage reveal reveal-delay-1">
+          <div class="fork__side-name">Sages</div>
+          <p class="fork__question">"What can we do now that was previously impossible?"</p>
+          <ul class="fork__list">
+            <li>Conquer new customers, new markets, and problems no one has solved yet</li>
+            <li>Capture growth that compounds over time</li>
+            <li>Customers feel the value deepen with every interaction — and never want to leave</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFERINGS -->
+  <section class="offerings" id="offerings">
+    <div class="offerings__inner">
+      <div class="offerings__header">
+        <div>
+          <span class="section-label">How We Work</span>
+          <h2 class="offerings__title">We are an AI Reinvention Team.</h2>
+        </div>
+        <p class="offerings__subtitle">
+          Part technology, part organizational design, part change management.
+          We help companies reinvent themselves from the ground up with AI —
+          so they can unlock a future that was previously impossible.
         </p>
       </div>
+
+      <div class="offerings__grid">
+
+        <!-- Card 1 -->
+        <div class="offering-card reveal">
+          <div class="offering-card__accent"></div>
+          <span class="offering-card__number">01 / 02</span>
+          <span class="offering-card__label">Strategy</span>
+          <h3 class="offering-card__title">AI North Star</h3>
+          <p class="offering-card__desc">
+            The biggest mistake companies are making right now is deploying AI without
+            knowing what they're actually trying to become. You have to answer a simple
+            question first: why are we doing this? Because everyone else is isn't a good
+            enough answer. Your people need to see how AI unlocks a previously impossible
+            future for the company — something worth building toward. Without that, they
+            won't trust your intentions, and they won't have the motivation to change.
+          </p>
+
+          <span class="offering-card__subhead">We work with you to...</span>
+          <ul class="offering-card__features">
+            <li>Identify the markets, customers, and problems that AI puts within reach for the first time</li>
+            <li>Build the leadership alignment and shared language needed to bring your organization with you</li>
+            <li>Translate that ambition into a clear roadmap that tells your people where you're going and why it's worth the journey</li>
+          </ul>
+
+          <div class="offering-card__deliverables">
+            <span class="offering-card__deliverable-title">Key deliverables</span>
+            <p><strong>The AI North Star</strong> — a clear, compelling vision of the future AI is enabling for your company, built to be stood up in front of your entire organization and believed.</p>
+            <p><strong>The Previously Impossible Roadmap</strong> — a concrete illustration of how every team gets reinvented: what AI takes off their plate, what previously impossible work they go after instead, and how it all ladders up to the North Star.</p>
+          </div>
+        </div>
+
+        <!-- Card 2 — Featured -->
+        <div class="offering-card offering-card--featured reveal reveal-delay-1">
+          <div class="offering-card__accent"></div>
+          <span class="offering-card__number">02 / 02</span>
+          <span class="offering-card__label">Ongoing</span>
+          <h3 class="offering-card__title">Role Reinvention Retainer</h3>
+          <p class="offering-card__desc">
+            Most companies offer a prompt engineering workshop and expect everything to
+            change. That's not how adoption works. We work hand in hand with your teams
+            to redesign their roles from the ground up — and we do the heavy lifting,
+            so they don't have to figure it out from the side of their desk. What makes
+            it stick is that we're there every day, winning hearts and minds through the
+            work itself, not a one-time training that doesn't change anything.
+          </p>
+
+          <span class="offering-card__subhead">We work with you to...</span>
+          <ul class="offering-card__features">
+            <li>Map every role to its constituent tasks and identify what AI can own end to end, reinventing the role from the ground up</li>
+            <li>Build custom skills that give your people genuine superpowers</li>
+            <li>Win hearts and minds through daily interaction and co-design — not a one-time prompt engineering workshop</li>
+          </ul>
+
+          <div class="offering-card__deliverables">
+            <span class="offering-card__deliverable-title">End deliverable</span>
+            <p><strong>Reinvented roles</strong> — teams that don't just have AI tools, but know exactly how to use them to go after what was previously out of reach.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WE BELIEVE -->
+  <section class="manifesto" id="manifesto">
+    <div class="manifesto__header" style="display:block; margin-bottom: 60px;">
+      <span class="section-label">Our Beliefs</span>
+      <h2 class="manifesto__title">We Believe...</h2>
     </div>
 
     <div class="manifesto__list">
@@ -1455,11 +1631,10 @@
       <div class="manifesto__item reveal">
         <span class="manifesto__num">01</span>
         <div class="manifesto__body">
-          <h3 class="manifesto__statement">The model is the easy part. The human is the hard part.</h3>
+          <h3 class="manifesto__statement">Humans are an appreciating asset.</h3>
           <p class="manifesto__detail">
-            Every organization can access the same AI. The differentiator is
-            the person operating it — their judgment, their taste, their
-            accountability. We invest where the leverage actually lives.
+            The companies that don't see the value of humans in the next chapter
+            will hand their greatest asset to the ones who do.
           </p>
         </div>
       </div>
@@ -1467,11 +1642,10 @@
       <div class="manifesto__item reveal reveal-delay-1">
         <span class="manifesto__num">02</span>
         <div class="manifesto__body">
-          <h3 class="manifesto__statement">Augmentation beats automation every time it matters.</h3>
+          <h3 class="manifesto__statement">Reinvention over replacement.</h3>
           <p class="manifesto__detail">
-            The highest-value work requires human presence — trust, nuance,
-            creativity, ethics. AI should amplify that presence, not
-            eliminate it. We build people who know the difference.
+            We believe making an employee 10x more powerful is worth more than
+            turning their salary into cost savings.
           </p>
         </div>
       </div>
@@ -1479,35 +1653,11 @@
       <div class="manifesto__item reveal reveal-delay-2">
         <span class="manifesto__num">03</span>
         <div class="manifesto__body">
-          <h3 class="manifesto__statement">Roles don't disappear. They reinvent themselves or become irrelevant.</h3>
+          <h3 class="manifesto__statement">You can't stop technological change, but you can shape it.</h3>
           <p class="manifesto__detail">
-            Waiting to see what AI does to your job is a losing strategy.
-            The professionals who thrive are the ones actively rebuilding
-            their roles from the inside out — before someone does it for them.
-          </p>
-        </div>
-      </div>
-
-      <div class="manifesto__item reveal">
-        <span class="manifesto__num">04</span>
-        <div class="manifesto__body">
-          <h3 class="manifesto__statement">AI literacy is the new executive credential.</h3>
-          <p class="manifesto__detail">
-            You don't need to build models. You need to understand them
-            well enough to lead teams that use them — to ask the right
-            questions, spot the failures, and make confident calls.
-          </p>
-        </div>
-      </div>
-
-      <div class="manifesto__item reveal reveal-delay-1">
-        <span class="manifesto__num">05</span>
-        <div class="manifesto__body">
-          <h3 class="manifesto__statement">The future belongs to the people who stayed human on purpose.</h3>
-          <p class="manifesto__detail">
-            Empathy, leadership, creative direction, moral courage — these
-            compound in value as AI scales. We train the capabilities that
-            only become more rare, and more powerful, over time.
+            The transformation is here — but we have more control over how it
+            unfolds than most people realize. It's our job to bend it toward
+            the future we actually want.
           </p>
         </div>
       </div>
@@ -1522,158 +1672,11 @@
     <div class="editorial-break__overlay"></div>
     <div class="editorial-break__caption">
       <div class="editorial-break__rule"></div>
-      <p class="editorial-break__text">The human is the competitive advantage that compounds.</p>
+      <span class="editorial-break__kicker">Ask yourself a question:</span>
+      <p class="editorial-break__text">What could our business become if we assume humans are an appreciating asset, not a depreciating one?</p>
+      <p class="editorial-break__subtext">The companies that answer that question correctly in 2026 will be the case studies of 2028.</p>
     </div>
   </div>
-
-  <!-- SHARKS VS SAGES -->
-  <section class="fork">
-    <div class="fork__inner">
-      <div class="fork__header reveal">
-        <span class="fork__eyebrow">The Fork in the Road</span>
-        <h2 class="fork__title">Every company has a choice to make:<br /><em style="font-style:italic;">will you be a shark or a sage?</em></h2>
-      </div>
-      <div class="fork__split">
-
-        <div class="fork__side reveal">
-          <div class="fork__side-name">Sharks</div>
-          <p class="fork__question">"How many humans can we eliminate?"</p>
-          <ul class="fork__list">
-            <li>Deploy AI to replace human jobs</li>
-            <li>Margin expansion — real. Revenue growth — missing.</li>
-            <li>Defending old markets with shrinking teams</li>
-            <li>Executing with precision against a world that no longer exists</li>
-          </ul>
-          <div class="fork__outcome">
-            <span class="fork__outcome-label">By 2028</span>
-            <p class="fork__outcome-text">Executing with precision against a world that no longer existed.</p>
-          </div>
-        </div>
-
-        <div class="fork__side fork__side--sage reveal reveal-delay-1">
-          <div class="fork__side-name">Sages</div>
-          <p class="fork__question">"What can we do now that was previously impossible?"</p>
-          <ul class="fork__list">
-            <li>Deploy AI to make humans ten times more powerful</li>
-            <li>Redesign every role — don't reduce it</li>
-            <li>Invest in human judgment as an organizational capability</li>
-            <li>Revenue growing at rates competitors could only model</li>
-          </ul>
-          <div class="fork__outcome">
-            <span class="fork__outcome-label">By 2028</span>
-            <p class="fork__outcome-text">Revenue growing at rates competitors could only model.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- OFFERINGS -->
-  <section class="offerings" id="offerings">
-    <div class="offerings__inner">
-      <div class="offerings__header">
-        <div>
-          <span class="section-label">Programs</span>
-          <h2 class="offerings__title">Three ways we work.</h2>
-        </div>
-        <p class="offerings__subtitle">
-          From a single intensive to ongoing transformation —
-          each program is built for leaders who are serious about what comes next.
-        </p>
-      </div>
-
-      <div class="offerings__grid">
-
-        <!-- Card 1 -->
-        <div class="offering-card reveal">
-          <div class="offering-card__accent"></div>
-          <span class="offering-card__number">01 / 03</span>
-
-          <div class="offering-card__icon">
-            <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="22" cy="22" r="21" stroke="#DADADA" stroke-width="1"/>
-              <path d="M14 22h16M14 16h10M14 28h8" stroke="#111111" stroke-width="1.5" stroke-linecap="square"/>
-            </svg>
-          </div>
-
-          <span class="offering-card__label">Intensive</span>
-          <h3 class="offering-card__title">Executive AI Training</h3>
-          <p class="offering-card__desc">
-            The judgment layer is an executive skill. We equip senior leaders
-            to own both ends of the human wrapper — setting the right mission
-            before the AI runs, and translating its output into decisions
-            that only a human can make. Built for the 2026 window.
-          </p>
-
-          <ul class="offering-card__features">
-            <li>2-day intensive, cohorts of 8–12</li>
-            <li>Live AI tool walkthroughs</li>
-            <li>30-day follow-up coaching</li>
-          </ul>
-        </div>
-
-        <!-- Card 2 — Featured -->
-        <div class="offering-card offering-card--featured reveal reveal-delay-1">
-          <div class="offering-card__accent"></div>
-          <span class="offering-card__number">02 / 03</span>
-
-          <div class="offering-card__icon">
-            <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="22" cy="22" r="21" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-              <path d="M22 14v16M14 22h16" stroke="white" stroke-width="1.5" stroke-linecap="square"/>
-              <path d="M17 17l10 10M27 17L17 27" stroke="rgba(255,255,255,0.35)" stroke-width="1" stroke-linecap="square"/>
-            </svg>
-          </div>
-
-          <span class="offering-card__label">Workshop</span>
-          <h3 class="offering-card__title">Role Reinvention Workshop</h3>
-          <p class="offering-card__desc">
-            Decades of execution produced a workforce that had rarely been
-            asked to actually think. We change that. A structured audit
-            of each role: what AI absorbs, what gets freed, and how to
-            point that freed capacity at previously impossible problems.
-          </p>
-
-          <ul class="offering-card__features">
-            <li>Half-day or full-day format</li>
-            <li>Role audit + reinvention roadmap</li>
-            <li>Peer cohort accountability</li>
-          </ul>
-        </div>
-
-        <!-- Card 3 -->
-        <div class="offering-card reveal reveal-delay-2">
-          <div class="offering-card__accent"></div>
-          <span class="offering-card__number">03 / 03</span>
-
-          <div class="offering-card__icon">
-            <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="22" cy="22" r="21" stroke="#DADADA" stroke-width="1"/>
-              <path d="M22 14c-4.418 0-8 3.582-8 8s3.582 8 8 8 8-3.582 8-8" stroke="#111111" stroke-width="1.5" stroke-linecap="square"/>
-              <circle cx="22" cy="22" r="3" stroke="#111111" stroke-width="1.5"/>
-            </svg>
-          </div>
-
-          <span class="offering-card__label">Ongoing</span>
-          <h3 class="offering-card__title">Role Reinvention Retainer</h3>
-          <p class="offering-card__desc">
-            The Sage advantage doesn't happen once — it compounds. Ongoing
-            partnership to keep your people pointed at the right problems
-            as the landscape shifts. Built for organizations serious about
-            being the case study, not the cautionary tale.
-          </p>
-
-          <ul class="offering-card__features">
-            <li>Monthly 1:1 advisory sessions</li>
-            <li>Quarterly role audit check-ins</li>
-            <li>Priority workshop seats</li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </section>
 
   <!-- CLIENTS -->
   <div class="clients">
@@ -1695,17 +1698,16 @@
     <div class="footer__inner">
       <div class="footer__top" style="grid-template-columns:1fr;">
         <div>
-          <div class="footer__brand">Build <span>Human</span></div>
+          <div class="footer__brand">Sage <span>AI</span></div>
           <p class="footer__tagline">
-            AI but for humans. We help executives and organizations
-            develop the human capabilities that AI can't replicate —
-            and won't.
+            We help companies reinvent themselves from the ground up with AI —
+            so they can unlock a future that was previously impossible.
           </p>
-          <a href="mailto:Humans@buildhuman.co" style="font-family:var(--sans);font-size:15px;font-weight:400;color:var(--white);text-decoration:none;display:inline-flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.2);padding-bottom:4px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(255,255,255,0.7)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)'">Humans@buildhuman.co</a>
+          <a href="mailto:hello@sageai.co" style="font-family:var(--sans);font-size:15px;font-weight:400;color:var(--white);text-decoration:none;display:inline-flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.2);padding-bottom:4px;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(255,255,255,0.7)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)'">hello@sageai.co</a>
         </div>
       </div>
       <div class="footer__bottom">
-        <p class="footer__copy">© 2026 Build Human. All rights reserved.</p>
+        <p class="footer__copy">© 2026 Sage AI. All rights reserved.</p>
         <div class="footer__legal">
           <a href="#">Privacy</a>
           <a href="#">Terms</a>
