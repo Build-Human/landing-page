@@ -84,11 +84,12 @@
       font-weight: 500;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--light-gray);
+      color: rgba(255,255,255,0.65);
     }
 
     .topbar__eyebrow span {
-      color: var(--red);
+      color: #ffffff;
+      font-weight: 600;
     }
 
     .topbar__cta {
@@ -254,7 +255,7 @@
       font-size: 17px;
       font-weight: 300;
       line-height: 1.65;
-      color: var(--mid-gray);
+      color: rgba(255,255,255,0.85);
     }
 
     .hero__actions {
@@ -578,7 +579,11 @@
       font-weight: 900;
       line-height: 1.05;
       letter-spacing: -0.02em;
-      color: var(--white);
+      color: var(--black);
+    }
+
+    .fork__title em {
+      font-weight: 400;
     }
 
     .fork__split {
@@ -667,7 +672,7 @@
     }
 
     .fork__list li::before {
-      content: '—';
+      content: '→';
       font-weight: 300;
       color: rgba(255,255,255,0.4);
       flex-shrink: 0;
@@ -1492,7 +1497,7 @@
   <div class="topbar">
     <div class="topbar__inner">
       <p class="topbar__eyebrow">The fork in the road is here. <span>Which bet are you making?</span></p>
-      <a href="#offerings" class="topbar__cta">View Programs</a>
+
     </div>
   </div>
 
