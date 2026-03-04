@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The 2028 Human Intelligence Renaissance — Sage AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --red: #8ECBA8;
+      --black: #D4EDE0;
+      --near-black: #C0E0CE;
+      --dark-gray: #9ECFB2;
+      --mid-gray: rgba(142,203,168,0.58);
+      --light-gray: rgba(142,203,168,0.38);
+      --rule: rgba(142,203,168,0.16);
+      --bg: #1B3829;
+      --white: #1B3829;
+      --cream: #162E21;
+      --forest-deep: #0F2218;
+      --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(rgba(142,203,168,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(142,203,168,0.05) 1px, transparent 1px);
+      background-size: 48px 48px;
+      color: var(--black);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* BACK NAV */
+    .back-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid var(--rule);
+      padding: 16px 40px;
+    }
+
+    .back-nav__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--dark-gray);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .back-nav__link:hover { color: var(--black); }
+
+    .back-nav__link svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    /* MODAL */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 1000;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+    .modal {
+      background: var(--white);
+      max-width: 760px;
+      width: 100%;
+      position: relative;
+      transform: translateY(24px);
+      transition: transform 0.35s ease;
+    }
+
+    .modal-overlay.open .modal { transform: translateY(0); }
+
+    .modal__header {
+      padding: 48px 60px 36px;
+      border-bottom: 3px solid var(--black);
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      z-index: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .modal__title {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--black);
+    }
+
+    .modal__close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: var(--mid-gray);
+      flex-shrink: 0;
+      margin-top: 4px;
+      transition: color 0.15s;
+    }
+
+    .modal__close:hover { color: var(--black); }
+    .modal__close svg { display: block; width: 20px; height: 20px; }
+
+    .modal__body { padding: 44px 60px 60px; }
+    .modal__body p { font-family: var(--sans); font-size: 15px; font-weight: 300; line-height: 1.8; color: var(--dark-gray); margin-bottom: 20px; }
+
+    /* HERO */
+    .manifesto-hero {
+      padding: 80px 40px 60px;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .manifesto-hero__label {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 24px;
+    }
+
+    .manifesto-hero__title {
+      font-family: var(--serif);
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      color: var(--black);
+      margin-bottom: 32px;
+    }
+
+    .manifesto-hero__intro {
+      font-family: var(--sans);
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--dark-gray);
+      max-width: 680px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* BODY */
+    .manifesto-body {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 40px 120px;
+    }
+
+    .manifesto-body p {
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--dark-gray);
+      margin-bottom: 24px;
+    }
+
+    .manifesto-body h2 {
+      font-family: var(--serif);
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--black);
+      margin: 64px 0 18px;
+      line-height: 1.2;
+    }
+
+    .manifesto-body h2:first-child { margin-top: 48px; }
+
+    .manifesto-body h3 {
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--black);
+      margin: 40px 0 12px;
+      line-height: 1.3;
+    }
+
+    .manifesto-body ul {
+      padding-left: 0;
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .manifesto-body ul li {
+      font-family: var(--sans);
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--dark-gray);
+      padding: 5px 0 5px 24px;
+      position: relative;
+    }
+
+    .manifesto-body ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--red);
+    }
+
+    .pullquote {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1.45;
+      color: var(--black);
+      border-left: 3px solid var(--red);
+      padding: 16px 0 16px 28px;
+      margin: 48px 0;
+    }
+
+    /* FOOTER */
+    .manifesto-footer {
+      background: var(--forest-deep);
+      border-top: 1px solid var(--rule);
+      padding: 40px;
+      text-align: center;
+    }
+
+    .manifesto-footer a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--dark-gray);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+    }
+
+    .manifesto-footer a:hover { color: var(--black); }
+
+    @media (max-width: 640px) {
+      .back-nav { padding: 14px 20px; }
+      .manifesto-hero { padding: 48px 20px 40px; }
+      .manifesto-body { padding: 0 20px 80px; }
+      .manifesto-footer { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="back-nav">
+    <a href="blog.html" class="back-nav__link">
+      <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter"/>
+      </svg>
+      Writing
+    </a>
+  </nav>
+
+  <header class="manifesto-hero">
+    <p class="manifesto-hero__label">Manifesto</p>
+    <h1 class="manifesto-hero__title">The 2028 Human Intelligence Renaissance</h1>
+    <p class="manifesto-hero__intro">Citrini Research recently published a striking scenario memo imagining the macroeconomic fallout of AI-driven labor displacement: 10.2% unemployment, an S&amp;P down 38%, and an economy that generated extraordinary output while hollowing out the consumer base that sustained it. Like that memo, what follows is a scenario, not a prediction. The sole intent is to model an alternate path — one in which the same technology lands in the same economy, but a critical mass of organizations make a different bet about what humans are for.</p>
+  </header>
+
+  <main class="manifesto-body">
+
+    <div class="pullquote">The unemployment rate printed 4.9% this morning, a full point below consensus.</div>
+
+    <p>The S&amp;P added 1.4% on the number. Real GDP has run at 3.1% annualized through the 2026–2028 window, and the federal budget held within 3% of baseline.</p>
+
+    <p>We almost got this catastrophically wrong. The Citrini Research memo was right about the technology. They were right about the disruption. What they missed was that roughly a third of large employers would make a different organizational bet than the one their model assumed — and that bet turned out to be contagious, raising the competitive bar that the firms that hadn't made it were eventually forced to meet.</p>
+
+    <h2>The Fork in the Road: Shark or Sage?</h2>
+
+    <p>In early 2026, agentic coding tools took a step-function leap. AI could suddenly code and analyze — reliably. Organizations realized these were real teammates capable of doing work, not just advanced search engines.</p>
+
+    <p>What had been experiments became operating systems. Across the Fortune 500, after a year of organizational navigation and implementation, the first wave of responses was exactly what you would expect.</p>
+
+    <p>Large companies began layoffs. Boards demanded efficiency programs. The logic made sense at the individual firm level: cut headcount, redeploy savings into AI, maintain output at lower cost. By early 2027, roughly 60% of Fortune 500 companies were executing some version of this playbook.</p>
+
+    <p>But the other third made a different bet. A handful of executives noticed something the efficiency optimizers missed: the companies cutting hardest were not actually outperforming. The margin expansion was real. The revenue growth wasn't.</p>
+
+    <p>Without realizing it, a fork in the road had emerged. A competing worldview was born — one that became widely known as the Sharks versus the Sages.</p>
+
+    <h2>The Competing Worldview</h2>
+
+    <p>The Sharks, the 60%, took the obvious path: deploy AI to automate human jobs, replacing them and converting them into cost savings.</p>
+
+    <p>The Sages took a different path. They deployed AI to make humans smarter and more strategic, giving them superpowers to conquer new verticals, new markets, new client relationships, and previously unsolvable problems.</p>
+
+    <div class="pullquote">Sharks asked: how many humans can we eliminate? Sages asked: what can we do now that was previously impossible?</div>
+
+    <p>Both groups started from the same premise. AI had made basic human knowledge a commodity. All the routine knowledge work that had defined the economy — creating reports, processing information, managing workflows — turned out to be far more executional than genuinely intellectual. Everyone realized, almost simultaneously, that this layer of work had always been closer to manufacturing than to thinking.</p>
+
+    <p>But the Sages saw something further. In taking over the executional layer, AI had done something no one quite anticipated: it allowed human brains to be brains again.</p>
+
+    <p>The value of humans became clear through what economists coined the <strong>judgment layer</strong> — the irreducible acts of turning AI analysis and effort into game-changing insight and direction.</p>
+
+    <p>They called it the <strong>'human wrapper'</strong>. For every executional task owned by AI, humans could apply judgment before and after.</p>
+
+    <ul>
+      <li><strong>Before:</strong> setting the goals, curating the context, sending the AI on the right mission.</li>
+      <li><strong>After:</strong> using the AI's work to chart the right path forward — with the texture and nuance that purely algorithmic reasoning flattens out — and translating insight into action given people's histories, preconceptions, and preferences.</li>
+    </ul>
+
+    <p>This understanding unlocked superpowers within humans. The companies that grasped it stopped asking how many people they could cut and started asking how to make each one ten times as powerful.</p>
+
+    <h2>What the Sages Did, Specifically</h2>
+
+    <p>This is not a story about altruism. The Sage firms were not idealists. They made this bet because it paid off.</p>
+
+    <h3>They redesigned work instead of reducing it.</h3>
+    <p>Rather than asking which tasks to eliminate, they reinvented every role. They decomposed each position into its constituent tasks, determined what the AI could handle, and used the freed human capacity to drive strategic value. A researcher who once spent 80% of their time on synthesis spent 80% of their time on sense-making. An analyst who once produced one competitive landscape per quarter produced twelve — and started telling clients things their own strategy teams hadn't seen.</p>
+
+    <h3>They invested in human judgment.</h3>
+    <p>Peer review. Domain apprenticeship. Institutional practices that turn a technically capable person into someone with genuinely good judgment. They realized that decades of pure knowledge execution had produced a workforce that had rarely been asked to actually think. The raw material was there. It simply hadn't been exercised.</p>
+
+    <h3>They built AI systems designed for collaboration, not substitution.</h3>
+    <p>The UX of their internal tools was built to surface human attention to the right decision at the right moment. They instrumented for where human judgment added the most value and concentrated human effort there. The AI did not replace the strategist. It made the strategist's attention worth more.</p>
+
+    <h2>How It Paid Off</h2>
+
+    <p>By 2028, the bifurcation was visible in the data. The companies that had chosen expansion over subtraction were growing revenue at rates their competitors could only model. Sage firms weren't honing what they already had; they were expanding what was addressable. New demand unlocked. New categories untapped. Old problems finally solved because someone finally had the human capacity to think about them properly.</p>
+
+    <p>The Sharks, meanwhile, were waiting for a storm to pass that was not going to pass. Defending old markets with shrinking teams. Running leaner on leaner. There is a quality of interaction — an aliveness, a responsiveness, a sense of genuine expertise — within a Sage company that customers could feel the absence of with Sharks. Shark's quality of output was declining right as the Sages' was exploding.</p>
+
+    <p>The standard had moved. Cutting further wasn't going to close that gap. Sharks faced a forced choice: reinvest in humans to compete, or keep losing the clients worth having.</p>
+
+    <h2>You Are Reading This in February 2026</h2>
+
+    <p>The S&amp;P is near all-time highs. The fork has not yet appeared clearly in the data. Most firms have not yet made their bet explicitly; they are still living in the comfortable ambiguity of the early adoption period, when efficiency gains and workforce investment are not yet in direct tension.</p>
+
+    <p>That tension is coming. The quarterly pressure, when it arrives, will make one answer feel obvious. The cuts will feel responsible. The efficiency program will have a name and a slide deck and a timeline. It will feel like strategy.</p>
+
+    <div class="pullquote">The question every leadership team needs to answer before the quarterly pressure makes the answer feel inevitable: What does our business become if we assume humans are the appreciating asset, not the depreciating one?</div>
+
+    <p>And here is the part that most leadership teams haven't modeled: the firms that answer it correctly won't just outperform. They'll raise the bar for everyone else. The minority doesn't need to save the economy directly. They need to make the alternative expensive enough that the market does the rest.</p>
+
+    <p>The companies that answer that question correctly in 2026 will be the case studies of 2028.</p>
+
+  </main>
+
+  <footer class="manifesto-footer">
+    <a href="blog.html">← Back to Writing</a>
+  </footer>
+
+  <!-- CONTACT MODAL -->
+  <div class="modal-overlay" id="contactModal" onclick="if(event.target===this)closeContact()">
+    <div class="modal" style="max-width:520px;">
+      <div class="modal__header">
+        <h2 class="modal__title">Get in Touch</h2>
+        <button class="modal__close" onclick="closeContact()" aria-label="Close">
+          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
+          </svg>
+        </button>
+      </div>
+      <div class="modal__body">
+        <p style="color:var(--mid-gray); margin-bottom:32px;">We'd love to hear about your AI journey. Drop us a line and we'll be in touch.</p>
+        <a href="mailto:hello@wearesage.co" style="display:inline-flex;align-items:center;gap:14px;font-family:var(--serif);font-size:26px;font-weight:700;letter-spacing:-0.01em;color:var(--black);text-decoration:none;border-bottom:2px solid var(--red);padding-bottom:6px;transition:color 0.2s;" onmouseover="this.style.color='var(--red)'" onmouseout="this.style.color='var(--black)'">hello@wearesage.co</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openContact() {
+      document.getElementById('contactModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeContact() {
+      document.getElementById('contactModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContact(); });
+  </script>
+
+</body>
+</html>
