@@ -245,9 +245,14 @@
       margin-bottom: 40px;
     }
 
+    .hero__headline-light {
+      font-weight: 300;
+      font-size: 0.75em;
+    }
+
     .hero__headline em {
       font-style: italic;
-      font-weight: 400;
+      font-weight: 700;
       color: var(--red);
       font-size: 0.8em;
     }
@@ -722,9 +727,26 @@
       color: var(--white);
     }
 
+    .fork__mobile-summary {
+      display: none;
+    }
+
     @media (max-width: 900px) {
       .fork__split {
         grid-template-columns: 1fr;
+      }
+      .fork__list { display: none; }
+      .fork__mobile-summary {
+        display: block;
+        font-family: var(--sans);
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 1.65;
+        color: var(--dark-gray);
+        margin-top: 24px;
+      }
+      .fork__side--sage .fork__mobile-summary {
+        color: rgba(15,34,24,0.75);
       }
     }
 
@@ -1456,7 +1478,7 @@
     .editorial-break__text {
       font-family: var(--serif);
       font-size: clamp(26px, 2.8vw, 44px);
-      font-weight: 700;
+      font-weight: 400;
       font-style: italic;
       color: var(--black);
       max-width: 560px;
@@ -1546,6 +1568,7 @@
     <div class="header__main">
       <a href="#" class="header__logo">Sage <span>AI</span></a>
       <nav class="header__nav">
+        <a href="blog.html">Writing</a>
         <button onclick="openContact()" class="header__nav-cta btn">Get in Touch</button>
       </nav>
     </div>
@@ -1555,17 +1578,17 @@
   <section class="hero">
     <div class="hero__inner">
       <div class="hero__content">
-        <p class="hero__kicker">Sage AI</p>
-        <h1 class="hero__headline">AI to unlock<br /><em>the previously impossible.</em></h1>
+        <h1 class="hero__headline"><span class="hero__headline-light">Unlock the</span><br /><em>previously impossible.</em></h1>
         <div class="hero__lower">
           <p class="hero__subtext">
-            The smartest organizations aren't replacing their people with AI.
-            They're making their people 10x more powerful — so they can unlock
-            new customers, markets, and growth.
+            The smartest organizations aren't replacing their employees with AI.
+            They're applying AI to make their people 10x more powerful, unlocking
+            productivity so they can better serve customers, create new markets,
+            and drive growth.
           </p>
           <div class="hero__actions">
             <a href="#offerings" class="btn btn--primary">See Our Programs</a>
-            <button onclick="openManifesto()" class="btn btn--ghost">Read the Manifesto</button>
+            <a href="manifesto.html" class="btn btn--ghost">Read the Manifesto</a>
           </div>
         </div>
       </div>
@@ -1620,16 +1643,18 @@
             <li>Win a one-time efficiency gain, then watch revenue slowly erode</li>
             <li>Customers sense the hollowness — and start looking for someone better</li>
           </ul>
+          <p class="fork__mobile-summary">Win a one-time efficiency gain then watch revenue slowly erode while defending old markets.</p>
         </div>
 
         <div class="fork__side fork__side--sage reveal reveal-delay-1">
           <div class="fork__side-name">Sages</div>
           <p class="fork__question">"What can we do now that was previously impossible?"</p>
           <ul class="fork__list">
-            <li>Conquer new customers, new markets, and problems no one has solved yet</li>
+            <li>Create new customers, solve problems no one has tackled yet, and conquer new markets</li>
             <li>Capture growth that compounds over time</li>
-            <li>Customers feel the value deepen with every interaction — and never want to leave</li>
+            <li>Customers feel the value grow with every interaction, deepening the relationship</li>
           </ul>
+          <p class="fork__mobile-summary">Drive sustainable growth by conquering new customers, new markets and problems no one has solved yet.</p>
         </div>
 
       </div>
@@ -1645,9 +1670,9 @@
           <h2 class="offerings__title">We are an AI Reinvention Team.</h2>
         </div>
         <p class="offerings__subtitle">
-          Part technology, part organizational design, part change management.
-          We help companies reinvent themselves from the ground up with AI —
-          so they can unlock a future that was previously impossible.
+          Part technology, part experience design, part change management.
+          We are people-obsessed builders that help companies reinvent themselves
+          with AI so they can unlock a future that was previously impossible.
         </p>
       </div>
 
@@ -1660,11 +1685,10 @@
           <span class="offering-card__label">Offering 1</span>
           <h3 class="offering-card__title">AI North Star</h3>
           <p class="offering-card__desc">
-            The biggest mistake companies make is deploying AI without knowing what they're
-            trying to become. You have to answer one question first: why are we doing this?
-            'Because everyone else is' doesn't cut it. Your people need to see how AI unlocks
-            a future worth building toward — or they won't trust your intentions, and they
-            won't change.
+            The biggest mistake companies make is deploying AI without a vision for what it unlocks.
+            Before the rollout, before the tools, you have to answer one question: what would we
+            build if our people had 55% more time? Without that answer, there's no trust. No
+            motivation to change. Just a mandate that feels like a threat.
           </p>
 
           <span class="offering-card__subhead">We work with you to...</span>
@@ -1686,19 +1710,19 @@
           <div class="offering-card__accent"></div>
           <span class="offering-card__number">02 / 02</span>
           <span class="offering-card__label">Offering 2</span>
-          <h3 class="offering-card__title">Role Reinvention Retainer</h3>
+          <h3 class="offering-card__title">Role Reinvention</h3>
           <p class="offering-card__desc">
-            Most companies run a prompt engineering workshop and call it transformation.
-            That's not how adoption works. We redesign roles from the ground up — doing
-            the heavy lifting so your people don't have to figure it out on the side of
-            their desk. What makes it stick: we're there every day, winning hearts and
-            minds through the work itself.
+            Your best people don't need to be replaced. They need to be reinvented. We
+            redesign their roles from the ground up — new workflows, new tools, new job
+            descriptions built around the work that actually requires a human brain. Then
+            we stay in the trenches with them until the new habits stick and the new
+            capabilities feel like second nature.
           </p>
 
           <span class="offering-card__subhead">We work with you to...</span>
           <ul class="offering-card__features">
             <li>Map every role to its constituent tasks and identify what AI can own end to end, reinventing the role from the ground up</li>
-            <li>Build custom skills that give your people genuine superpowers</li>
+            <li>Build custom AI agents and skills that give your people genuine superpowers</li>
             <li>Win hearts and minds through daily interaction and co-design — not a one-time prompt engineering workshop</li>
           </ul>
 
@@ -1766,7 +1790,7 @@
     <div class="editorial-break__caption">
       <div class="editorial-break__rule"></div>
       <span class="editorial-break__kicker">Ask yourself a question:</span>
-      <p class="editorial-break__text">What could our business become if we assume humans are an appreciating asset, not a depreciating one?</p>
+      <p class="editorial-break__text">What problems have you given up on — not because they aren't worth solving, but because no one ever had the bandwidth?</p>
       <p class="editorial-break__subtext">The companies that answer that question correctly in 2026 will be the case studies of 2028.</p>
     </div>
   </div>
@@ -1812,96 +1836,6 @@
     </div>
   </div>
 
-  <!-- MANIFESTO MODAL -->
-  <div class="modal-overlay" id="manifestoModal" onclick="handleOverlayClick(event)">
-    <div class="modal">
-      <div class="modal__header">
-        <h2 class="modal__title">The 2028 Human Intelligence Renaissance</h2>
-        <button class="modal__close" onclick="closeManifesto()" aria-label="Close">
-          <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 4l12 12M16 4L4 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"/>
-          </svg>
-        </button>
-      </div>
-      <div class="modal__body">
-        <p>Citrini Research recently published a striking scenario memo imagining the macroeconomic fallout of AI-driven labor displacement: 10.2% unemployment, an S&amp;P down 38%, and an economy that generated extraordinary output while hollowing out the consumer base that sustained it. Like that memo, what follows is a scenario, not a prediction. The sole intent is to model an alternate path — one in which the same technology lands in the same economy, but a critical mass of organizations make a different bet about what humans are for.</p>
-
-        <div class="modal__pullquote">The unemployment rate printed 4.9% this morning, a full point below consensus.</div>
-
-        <p>The S&amp;P added 1.4% on the number. Real GDP has run at 3.1% annualized through the 2026–2028 window, and the federal budget held within 3% of baseline.</p>
-
-        <p>We almost got this catastrophically wrong. The Citrini Research memo was right about the technology. They were right about the disruption. What they missed was that roughly a third of large employers would make a different organizational bet than the one their model assumed — and that bet turned out to be contagious, raising the competitive bar that the firms that hadn't made it were eventually forced to meet.</p>
-
-        <h2>The Fork in the Road: Shark or Sage?</h2>
-
-        <p>In early 2026, agentic coding tools took a step-function leap. AI could suddenly code and analyze — reliably. Organizations realized these were real teammates capable of doing work, not just advanced search engines.</p>
-
-        <p>What had been experiments became operating systems. Across the Fortune 500, after a year of organizational navigation and implementation, the first wave of responses was exactly what you would expect.</p>
-
-        <p>Large companies began layoffs. Boards demanded efficiency programs. The logic made sense at the individual firm level: cut headcount, redeploy savings into AI, maintain output at lower cost. By early 2027, roughly 60% of Fortune 500 companies were executing some version of this playbook.</p>
-
-        <p>But the other third made a different bet. A handful of executives noticed something the efficiency optimizers missed: the companies cutting hardest were not actually outperforming. The margin expansion was real. The revenue growth wasn't.</p>
-
-        <p>Without realizing it, a fork in the road had emerged. A competing worldview was born — one that became widely known as the Sharks versus the Sages.</p>
-
-        <h2>The Competing Worldview</h2>
-
-        <p>The Sharks, the 60%, took the obvious path: deploy AI to automate human jobs, replacing them and converting them into cost savings.</p>
-
-        <p>The Sages took a different path. They deployed AI to make humans smarter and more strategic, giving them superpowers to conquer new verticals, new markets, new client relationships, and previously unsolvable problems.</p>
-
-        <div class="modal__pullquote">Sharks asked: how many humans can we eliminate? Sages asked: what can we do now that was previously impossible?</div>
-
-        <p>Both groups started from the same premise. AI had made basic human knowledge a commodity. All the routine knowledge work that had defined the economy — creating reports, processing information, managing workflows — turned out to be far more executional than genuinely intellectual. Everyone realized, almost simultaneously, that this layer of work had always been closer to manufacturing than to thinking.</p>
-
-        <p>But the Sages saw something further. In taking over the executional layer, AI had done something no one quite anticipated: it allowed human brains to be brains again.</p>
-
-        <p>The value of humans became clear through what economists coined the <strong>judgment layer</strong> — the irreducible acts of turning AI analysis and effort into game-changing insight and direction.</p>
-
-        <p>They called it the <strong>'human wrapper'</strong>. For every executional task owned by AI, humans could apply judgment before and after.</p>
-
-        <ul>
-          <li><strong>Before:</strong> setting the goals, curating the context, sending the AI on the right mission.</li>
-          <li><strong>After:</strong> using the AI's work to chart the right path forward — with the texture and nuance that purely algorithmic reasoning flattens out — and translating insight into action given people's histories, preconceptions, and preferences.</li>
-        </ul>
-
-        <p>This understanding unlocked superpowers within humans. The companies that grasped it stopped asking how many people they could cut and started asking how to make each one ten times as powerful.</p>
-
-        <h2>What the Sages Did, Specifically</h2>
-
-        <p>This is not a story about altruism. The Sage firms were not idealists. They made this bet because it paid off.</p>
-
-        <h3>They redesigned work instead of reducing it.</h3>
-        <p>Rather than asking which tasks to eliminate, they reinvented every role. They decomposed each position into its constituent tasks, determined what the AI could handle, and used the freed human capacity to drive strategic value. A researcher who once spent 80% of their time on synthesis spent 80% of their time on sense-making. An analyst who once produced one competitive landscape per quarter produced twelve — and started telling clients things their own strategy teams hadn't seen.</p>
-
-        <h3>They invested in human judgment.</h3>
-        <p>Peer review. Domain apprenticeship. Institutional practices that turn a technically capable person into someone with genuinely good judgment. They realized that decades of pure knowledge execution had produced a workforce that had rarely been asked to actually think. The raw material was there. It simply hadn't been exercised.</p>
-
-        <h3>They built AI systems designed for collaboration, not substitution.</h3>
-        <p>The UX of their internal tools was built to surface human attention to the right decision at the right moment. They instrumented for where human judgment added the most value and concentrated human effort there. The AI did not replace the strategist. It made the strategist's attention worth more.</p>
-
-        <h2>How It Paid Off</h2>
-
-        <p>By 2028, the bifurcation was visible in the data. The companies that had chosen expansion over subtraction were growing revenue at rates their competitors could only model. Sage firms weren't honing what they already had; they were expanding what was addressable. New demand unlocked. New categories untapped. Old problems finally solved because someone finally had the human capacity to think about them properly.</p>
-
-        <p>The Sharks, meanwhile, were waiting for a storm to pass that was not going to pass. Defending old markets with shrinking teams. Running leaner on leaner. There is a quality of interaction — an aliveness, a responsiveness, a sense of genuine expertise — within a Sage company that customers could feel the absence of with Sharks. Shark's quality of output was declining right as the Sages' was exploding.</p>
-
-        <p>The standard had moved. Cutting further wasn't going to close that gap. Sharks faced a forced choice: reinvest in humans to compete, or keep losing the clients worth having.</p>
-
-        <h2>You Are Reading This in February 2026</h2>
-
-        <p>The S&amp;P is near all-time highs. The fork has not yet appeared clearly in the data. Most firms have not yet made their bet explicitly; they are still living in the comfortable ambiguity of the early adoption period, when efficiency gains and workforce investment are not yet in direct tension.</p>
-
-        <p>That tension is coming. The quarterly pressure, when it arrives, will make one answer feel obvious. The cuts will feel responsible. The efficiency program will have a name and a slide deck and a timeline. It will feel like strategy.</p>
-
-        <div class="modal__pullquote">The question every leadership team needs to answer before the quarterly pressure makes the answer feel inevitable: What does our business become if we assume humans are the appreciating asset, not the depreciating one?</div>
-
-        <p>And here is the part that most leadership teams haven't modeled: the firms that answer it correctly won't just outperform. They'll raise the bar for everyone else. The minority doesn't need to save the economy directly. They need to make the alternative expensive enough that the market does the rest.</p>
-
-        <p>The companies that answer that question correctly in 2026 will be the case studies of 2028.</p>
-      </div>
-    </div>
-  </div>
 
   <script>
     function openContact() {
@@ -1916,18 +1850,7 @@
       if (e.target === document.getElementById('contactModal')) closeContact();
     }
 
-    function openManifesto() {
-      document.getElementById('manifestoModal').classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-    function closeManifesto() {
-      document.getElementById('manifestoModal').classList.remove('open');
-      document.body.style.overflow = '';
-    }
-    function handleOverlayClick(e) {
-      if (e.target === document.getElementById('manifestoModal')) closeManifesto();
-    }
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeManifesto(); closeContact(); } });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeContact(); } });
 
     // Scroll reveal
     const revealEls = document.querySelectorAll('.reveal');
