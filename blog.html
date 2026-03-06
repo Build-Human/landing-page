@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
@@ -294,10 +295,80 @@
 
     @media (max-width: 640px) {
       .header__main { padding: 16px 20px; }
+      .header__nav { display: none; }
+      .hamburger { display: flex; }
       .page-header { padding: 48px 20px 36px; }
       .articles { padding: 0 20px 80px; }
       .article-card { grid-template-columns: 1fr; gap: 16px; padding: 40px 0; }
     }
+
+    /* HAMBURGER */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: var(--black);
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: currentColor;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* MOBILE MENU */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1px solid var(--rule);
+      background: var(--white);
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu__link {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--dark-gray);
+      text-decoration: none;
+      padding: 18px 32px;
+      border-bottom: 1px solid var(--rule);
+      transition: color 0.15s;
+    }
+
+    .mobile-menu__link:hover { color: var(--black); }
+
+    .mobile-menu__cta {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--red);
+      color: var(--forest-deep);
+      border: none;
+      cursor: pointer;
+      padding: 18px 32px;
+      text-align: left;
+      transition: background 0.2s;
+    }
+
+    .mobile-menu__cta:hover { background: #A8D8BC; }
   </style>
 </head>
 <body>
@@ -309,6 +380,15 @@
         <a href="blog.html" class="active">Writing</a>
         <button onclick="openContact()" class="header__nav-cta">Get in Touch</button>
       </nav>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="blog.html" class="mobile-menu__link">Writing</a>
+      <button class="mobile-menu__cta" onclick="openContact(); closeMobileMenu();">Get in Touch</button>
     </div>
   </header>
 
@@ -322,11 +402,11 @@
     <a href="manifesto.html" class="article-card">
       <div class="article-card__meta">
         <p class="article-card__label">Manifesto</p>
-        <p class="article-card__date">February 2026</p>
+        <p class="article-card__date">March 2026</p>
       </div>
       <div class="article-card__content">
-        <h2 class="article-card__title">The 2028 Human Intelligence Renaissance</h2>
-        <p class="article-card__excerpt">A scenario memo imagining an alternate path — one where a critical mass of organizations make a different bet about what humans are for in an AI-driven economy, and why that bet turns out to be contagious.</p>
+        <h2 class="article-card__title">The Fork in the AI Road: Will You be a Shark or a Sage?</h2>
+        <p class="article-card__excerpt">Sharks will primarily use AI to cut. Sages will primarily use AI to grow. By 2028, the gap will be undeniable. A personal take on the competing worldview that changes everything.</p>
         <span class="article-card__read">
           Read
           <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -366,6 +446,19 @@
       document.body.style.overflow = '';
     }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeContact(); });
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const btn = document.getElementById('hamburger');
+      const open = menu.classList.toggle('open');
+      btn.classList.toggle('open', open);
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    }
+    function closeMobileMenu() {
+      document.getElementById('mobileMenu').classList.remove('open');
+      const btn = document.getElementById('hamburger');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-label', 'Open menu');
+    }
   </script>
 
 </body>

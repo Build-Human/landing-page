@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      background-color: #1B3829;
+    }
+
+    .canvas {
+      position: relative;
+      width: 1200px;
+      height: 630px;
+      background-color: #1B3829;
+      background-image:
+        linear-gradient(rgba(142,203,168,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(142,203,168,0.07) 1px, transparent 1px);
+      background-size: 48px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 96px;
+      font-family: Georgia, 'Times New Roman', serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .logo {
+      position: absolute;
+      top: 52px;
+      left: 96px;
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: #D4EDE0;
+    }
+
+    .logo span { color: #8ECBA8; }
+
+    .headline {
+      font-size: 72px;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      color: #D4EDE0;
+    }
+
+    .headline em {
+      font-style: italic;
+      color: #A8D8BC;
+    }
+
+    .rule {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: #8ECBA8;
+    }
+  </style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="logo">Sage <span>AI</span></div>
+    <h1 class="headline">Unlock the<br><em>previously impossible.</em></h1>
+    <div class="rule"></div>
+  </div>
+</body>
+</html>
